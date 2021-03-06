@@ -3,21 +3,25 @@
         <h1>
             <%=listTitle%>
         </h1>
-        <div class="box">
-            <%for(var i=0;i<newListItem.length; i++){
-                if(newListItem[i]!=""){%>
+    </div>
+    <div class="box">
+        <%newListItem.forEach(newItem=>{
+                if(newItem.task!=""){%>
+            <form class="item" action="/delete" method="post">
                 <div class="item">
-                    <input type="checkbox">
+                    <input type="checkbox" onChange="this.form.submit()" value="<%=newItem._id%>" name="checkbox">
                     <p>
-                        <%=newListItem[i]%>
+                        <%=newItem.task%>
                     </p>
                 </div>
-                <%}}%>
+            </form>
+            <%}%>
+                <%});%>
 
                     <form class="" action="/" method="post">
                         <input type="text" name="newItem" id="newItem" placeholder="New Item" autofocus autocomplete="off">
                         <button type="submit" class="submit" name="list" value="<%=listTitle%>">+</button>
                     </form>
-        </div>
+    </div>
     </div>
     <%- include("footer") -%>
